@@ -17,7 +17,7 @@ while true; do
     resetprop -n sys.usb.state mtp 
     resetprop -n init.svc.adbd stopped 
     resetprop -n sys.usb.ffs.ready 0 
-	resetprop -n persist.sys.usb.reboot.func mtp 
+    resetprop -n persist.sys.usb.reboot.func mtp 
     resetprop -n service.adb.root 0  
     resetprop -n service.adb.tcp.port -1 
     resetprop -n persist.service.adb.enable 0 
