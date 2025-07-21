@@ -7,7 +7,7 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
     sleep 1
 done
 
-echo "[+] StealthDebug gestartet um $(date)" >> "$logfile"
+#echo "[+] StealthDebug gestartet um $(date)" >> "$logfile"
 
 
 while true; do
@@ -58,7 +58,7 @@ while true; do
     #stop adbd 2>/dev/null
     #stop usbd 2>/dev/null
 
-    echo "[+] Props aktualisiert um $(date)" >> "$logfile"
+   #echo "[+] Props aktualisiert um $(date)" >> "$logfile"
 
     
     sleep 2
