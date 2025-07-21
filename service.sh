@@ -3,31 +3,29 @@
 # Logfile optional
 #logfile="/data/local/tmp/stealthdebug.log"
 
-# Warten, bis Boot abgeschlossen ist
 while [ "$(getprop sys.boot_completed)" != "1" ]; do
     sleep 1
 done
 
-# Logstart
 echo "[+] StealthDebug gestartet um $(date)" >> "$logfile"
 
-# Wiederholtes Faken der Properties
+
 while true; do
-    # USB Debugging und ADB Properties
-    resetprop -n persist.sys.usb.config mtp #funktioniert
-    resetprop -n sys.usb.config mtp #funktioniert
-    resetprop -n sys.usb.state mtp #funktioniert
-    resetprop -n init.svc.adbd stopped #funktioniert
-    resetprop -n sys.usb.ffs.ready 0 #funktioniert
-	resetprop -n persist.sys.usb.reboot.func mtp #funktioniert
-    resetprop -n service.adb.root 0  #funktioniert
-    resetprop -n service.adb.tcp.port -1 #funktioniert
-    resetprop -n persist.service.adb.enable 0 #funktioniert 
+   
+    resetprop -n persist.sys.usb.config mtp 
+    resetprop -n sys.usb.config mtp 
+    resetprop -n sys.usb.state mtp 
+    resetprop -n init.svc.adbd stopped 
+    resetprop -n sys.usb.ffs.ready 0 
+	resetprop -n persist.sys.usb.reboot.func mtp 
+    resetprop -n service.adb.root 0  
+    resetprop -n service.adb.tcp.port -1 
+    resetprop -n persist.service.adb.enable 0 
     #resetprop -n sys.usb.controller none #killer
-    resetprop -n sys.usb.ffs.adb.ready 0 #funktioniert
+    resetprop -n sys.usb.ffs.adb.ready 0 
     #resetprop -n sys.usb.configfs 0  #killer
-    resetprop -n persist.vendor.usb.config none #funktioniert
-    resetprop -n vendor.usb.config none #funktioniert
+    resetprop -n persist.vendor.usb.config none 
+    resetprop -n vendor.usb.config none 
 
     # Build Properties
     resetprop -n ro.build.type user
@@ -53,18 +51,15 @@ while true; do
     resetprop -n ro.boot.mode normal
     resetprop -n ro.bootmode normal
 
-    # Magisk Hide / Root-Spuren löschen
     #resetprop --delete ro.magisk.disable
     #resetprop --delete persist.magisk.hide
     #resetprop --delete ro.magisk.version
 
-    # Dienste beenden (optional, wird jedes Mal versucht)
     #stop adbd 2>/dev/null
     #stop usbd 2>/dev/null
 
-    # Log-Eintrag für Debugging
     echo "[+] Props aktualisiert um $(date)" >> "$logfile"
 
-    # Warte 2 Sekunden und wiederhole
+    
     sleep 2
 done &
